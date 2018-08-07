@@ -827,6 +827,7 @@ open class Floaty: UIView {
         tintLayer.removeFromSuperlayer()
         if isTouched(touches) {
             toggle()
+            handler?(self)
         }
     }
     
