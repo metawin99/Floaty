@@ -28,6 +28,9 @@ import UIKit
 @IBDesignable
 open class Floaty: UIView {
     // MARK: - Properties
+    /* Added a handler variable, in order to add a new gestureRecognizer. */
+    @objc open var handler: ((Floaty) -> Void)? = nil
+
     
     /**
      `FloatyItem` objects.
@@ -262,6 +265,19 @@ open class Floaty: UIView {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
+        
+    }
+    
+    /* Created a new intilization with a handler.*/
+    public init(frame: CGRect, handler: @escaping ((Floaty) -> Void)) {
+        super.init(frame: frame)
+        size = min(frame.size.width, frame.size.height)
+        self.handler = handler
+        backgroundColor = UIColor.clear
+        isCustomFrame = true
+        setObserver()
+        setAccessibilityView()
+        
     }
     
     /**
