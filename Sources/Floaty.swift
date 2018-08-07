@@ -273,6 +273,7 @@ open class Floaty: UIView {
         super.init(frame: frame)
         size = min(frame.size.width, frame.size.height)
         self.handler = handler
+        print("we assigned the handler)")
         backgroundColor = UIColor.clear
         isCustomFrame = true
         setObserver()
@@ -323,6 +324,8 @@ open class Floaty: UIView {
      */
     @objc open func open() {
         fabDelegate?.floatyWillOpen?(self)
+        handler?(self)
+        print("the handler should have executed here*********")
         let animationGroup = DispatchGroup()
         
         if(items.count > 0){
@@ -827,7 +830,7 @@ open class Floaty: UIView {
         tintLayer.removeFromSuperlayer()
         if isTouched(touches) {
             toggle()
-            handler?(self)
+            
         }
     }
     
