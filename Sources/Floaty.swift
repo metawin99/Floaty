@@ -242,6 +242,7 @@ open class Floaty: UIView {
         backgroundColor = UIColor.clear
         setObserver()
         setAccessibilityView()
+        
     }
     
     /**
@@ -253,6 +254,7 @@ open class Floaty: UIView {
         backgroundColor = UIColor.clear
         setObserver()
         setAccessibilityView()
+        
     }
     
     /**
@@ -265,7 +267,8 @@ open class Floaty: UIView {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
-        
+        print("the handler should have executed here*********")
+
     }
     
     /* Created a new intilization with a handler.*/
@@ -278,7 +281,8 @@ open class Floaty: UIView {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
-        
+        print("the handler should have executed here*********")
+
     }
     
     /**
@@ -292,6 +296,8 @@ open class Floaty: UIView {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
+        print("the handler should have executed here*********")
+
     }
     
     // MARK: - Method
@@ -301,7 +307,8 @@ open class Floaty: UIView {
      */
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+        print("the handler should have executed here*********")
+
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
         if isCustomFrame == false {
@@ -333,7 +340,7 @@ open class Floaty: UIView {
             setOverlayView()
             self.superview?.insertSubview(overlayView, aboveSubview: self)
             self.superview?.bringSubview(toFront: self)
-            //overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
+            overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
             
             overlayViewDidCompleteOpenAnimation = false
             animationGroup.enter()
@@ -427,6 +434,7 @@ open class Floaty: UIView {
      Items open or close.
      */
     @objc open func toggle() {
+        print("in toggle*******************")
         if items.count > 0 {
             if closed == true {
                 open()
@@ -498,6 +506,7 @@ open class Floaty: UIView {
      */
     @discardableResult
     @objc open func addItem(_ title: String, icon: UIImage?) -> FloatyItem {
+        print("hello############")
         let item = FloatyItem()
         itemDefaultSet(item)
         item.title = title
