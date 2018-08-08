@@ -30,6 +30,7 @@ open class Floaty: UIView {
     // MARK: - Properties
     /* Added a handler variable, in order to add a new gestureRecognizer. */
     @objc open var handler: ((Floaty) -> Void)? = nil
+    @objc open var handler2: ((Floaty) -> Void)? = nil
 
     
     /**
@@ -267,22 +268,19 @@ open class Floaty: UIView {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
-        print("the handler should have executed here*********")
-
     }
     
     /* Created a new intilization with a handler.*/
-    public init(frame: CGRect, handler: @escaping ((Floaty) -> Void)) {
+    public init(frame: CGRect, handler: @escaping ((Floaty) -> Void), handler2: @escaping((Floaty)-> Void)) {
         super.init(frame: frame)
         size = min(frame.size.width, frame.size.height)
         self.handler = handler
+        self.handler2 = handler2
         print("we assigned the handler)")
         backgroundColor = UIColor.clear
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
-        print("the handler should have executed here*********")
-
     }
     
     /**
@@ -296,8 +294,6 @@ open class Floaty: UIView {
         isCustomFrame = true
         setObserver()
         setAccessibilityView()
-        print("the handler should have executed here*********")
-
     }
     
     // MARK: - Method
@@ -307,8 +303,6 @@ open class Floaty: UIView {
      */
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-        print("the handler should have executed here*********")
-
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
         if isCustomFrame == false {
@@ -338,9 +332,9 @@ open class Floaty: UIView {
         if(items.count > 0){
             
             setOverlayView()
-            self.superview?.insertSubview(overlayView, aboveSubview: self)
-            self.superview?.bringSubview(toFront: self)
-            overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
+            //self.superview?.insertSubview(overlayView, aboveSubview: self)
+            //self.superview?.bringSubview(toFront: self)
+            //overlayView.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
             
             overlayViewDidCompleteOpenAnimation = false
             animationGroup.enter()
@@ -386,6 +380,8 @@ open class Floaty: UIView {
      */
     @objc open func close() {
         fabDelegate?.floatyWillClose?(self)
+        handler2?(self)
+
         let animationGroup = DispatchGroup()
         
         if(items.count > 0){
