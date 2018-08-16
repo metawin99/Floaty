@@ -258,6 +258,15 @@ open class Floaty: UIView {
         
     }
     
+    public init(size: CGFloat, handler: @escaping ((Floaty) -> Void), handler2: @escaping((Floaty)-> Void)) {
+        self.size = size
+        super.init(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        backgroundColor = UIColor.clear
+        setObserver()
+        setAccessibilityView()
+        
+    }
+    
     /**
      Initialize with custom frame.
      */
