@@ -968,9 +968,9 @@ extension Floaty {
             let small = size <= item.size ? size : item.size
             item.frame.origin.x = big/2-small/2
             if verticalDirection == .up {
-                item.frame.origin.y = -itemHeight
+                item.frame.origin.x = -itemHeight
             } else {
-                item.frame.origin.y = itemHeight
+                item.frame.origin.x = itemHeight
             }
             item.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1)
             group.enter()
